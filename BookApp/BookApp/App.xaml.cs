@@ -37,7 +37,7 @@ namespace BookApp
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new ListEntryPage());
+            MainPage = new NavigationPage(new LoginPage());
         }
 
         protected override void OnStart()
