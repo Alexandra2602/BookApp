@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:BookApp"
+             x:Class="BookApp.ListPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Margin="20">
+                <Editor Placeholder="Title" Text="{Binding Title}" HeightRequest="50">
+                </Editor>
+            <Editor Placeholder="Author" Text="{Binding Author}" HeightRequest="50"/>
+            <Editor Placeholder="Publisher" Text="{Binding Publisher}" HeightRequest="50"/>
+            <Editor Placeholder="Number of Pages" Text="{Binding NumberOfPages}" HeightRequest="50"/>
+            <Editor Placeholder="Year Published" Text="{Binding YearPublished}" HeightRequest="50"/>
+                <Editor Placeholder="Image Path" x:Name="imgpathentry" Text="{Binding ImagePath}" HeightRequest="50"/>
+                <Button Text="Pick Image" Clicked="Button_Clicked"/>
+            <Image Source="{Binding ImagePath}" x:Name="resultImage"/>
+             
+            <Button Text="Add a review" Clicked="OnChooseButtonClicked"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Text="Save" Clicked="OnSaveButtonClicked" />
+                <Button Grid.Column="1" Text="Delete" Clicked="OnDeleteButtonClicked"/>
+                <ListView Grid.Row="1" Grid.ColumnSpan="2" x:Name="listView" Margin="20">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell Detail="{Binding Description}" />
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
