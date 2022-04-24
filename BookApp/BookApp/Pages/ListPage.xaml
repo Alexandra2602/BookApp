@@ -17,22 +17,19 @@
             <Image Source="{Binding ImagePath}" x:Name="resultImage"/>
              
             <Button Text="Add a review" Clicked="OnChooseButtonClicked"/>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Button Text="Save" Clicked="OnSaveButtonClicked" />
-                <Button Grid.Column="1" Text="Delete" Clicked="OnDeleteButtonClicked"/>
-                <ListView Grid.Row="1" Grid.ColumnSpan="2" x:Name="listView" Margin="20">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <TextCell Detail="{Binding Description}" />
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </Grid>
-        </StackLayout>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Button Text="Save" Clicked="OnSaveButtonClicked" Grid.Row="0" HeightRequest="20" />
+                    <Button Grid.Column="1" Text="Delete" Clicked="OnDeleteButtonClicked"/>
+                </Grid>
+                
+            </StackLayout>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>

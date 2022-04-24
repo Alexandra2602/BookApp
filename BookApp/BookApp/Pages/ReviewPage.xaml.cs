@@ -1,4 +1,5 @@
 ﻿using BookApp.Models;
+using BookApp.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,21 @@ namespace BookApp
             var review = (Review)BindingContext;
             await App.Database.SaveReviewAsync(review);
             listView.ItemsSource = await App.Database.GetReviewsAsync();
+            Review r;
+            if (review != null)
+            {
+                r = review as Review;
+                var lp = new ListReview()
+                {
+                    BookID = bl.ID,
+                    ReviewID = r.ID
+                };
+                await App.Database.SaveListReviewAsync(lp);
+                r.ListReviews = new List<ListReview> { lp };
+
+                await Navigation.PopAsync();
+
+            }
         }
         async void OnDeleteButtonClicked(object sender, EventArgs e)
         {
@@ -36,23 +52,8 @@ namespace BookApp
             base.OnAppearing();
             listView.ItemsSource = await App.Database.GetReviewsAsync();
         }
-        async void OnListViewItemSelected(object sender, SelectedItemChangedEventArgs e)
-        {
+        
+        
 
-            Review r;
-            if (e.SelectedItem != null)
-            {
-                r = e.SelectedItem as Review;
-                var lp = new ListReview()
-                {
-                    BookID = bl.ID,
-                    ReviewID = r.ID
-                };
-                await App.Database.SaveListReviewAsync(lp);
-                r.ListReviews = new List<ListReview> { lp };
-
-                await Navigation.PopAsync();
-            }
-        }
     }
 }

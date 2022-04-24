@@ -39,7 +39,7 @@ namespace BookApp
             base.OnAppearing();
             var shopl = (Book)BindingContext;
 
-            listView.ItemsSource = await App.Database.GetListReviewsAsync(shopl.ID);
+            //listView.ItemsSource = await App.Database.GetListReviewsAsync(shopl.ID);
         }
 
         string ImagePath;

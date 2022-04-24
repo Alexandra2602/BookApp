@@ -11,14 +11,14 @@ namespace BookApp.Data
     {
         readonly SQLiteAsyncConnection _database;
 
-        public object Search { get; private set; }
-
         public BooksListDatabase(string dbPath)
         {
             _database = new SQLiteAsyncConnection(dbPath);
             _database.CreateTableAsync<Book>().Wait();
             _database.CreateTableAsync<Review>().Wait();
             _database.CreateTableAsync<ListReview>().Wait();
+            _database.CreateTableAsync<RatingModel>().Wait();
+            _database.CreateTableAsync<ListRating>().Wait();
         }
         public Task<List<Book>> GetBookListsAsync()
         {
@@ -49,7 +49,7 @@ namespace BookApp.Data
         {
             return _database.Table<Book>().Where(c => c.Title.ToLower().Contains(search) || c.Author.ToLower().Contains(search)).FirstOrDefaultAsync();
         }
-        
+
 
         public Task<int> SaveReviewAsync(Review review)
         {
@@ -88,6 +88,44 @@ namespace BookApp.Data
             + " inner join ListReview LR"
             + " on R.ID = LR.ReviewID where LR.BookID = ?",
             reviewid);
+        }
+        public Task<int> SaveRatingAsync(RatingModel rating)
+        {
+            if (rating.ID != 0)
+            {
+                return _database.UpdateAsync(rating);
+            }
+            else
+            {
+                return _database.InsertAsync(rating);
+            }
+        }
+        public Task<int> DeleteRatingAsync(RatingModel rating)
+        {
+            return _database.DeleteAsync(rating);
+        }
+        public Task<List<RatingModel>> GetRatingsAsync()
+        {
+            return _database.Table<RatingModel>().ToListAsync();
+        }
+        public Task<int> SaveListRatingAsync(ListRating listp)
+        {
+            if (listp.ID != 0)
+            {
+                return _database.UpdateAsync(listp);
+            }
+            else
+            {
+                return _database.InsertAsync(listp);
+            }
+        }
+        public Task<List<RatingModel>> GetListRatingsAsync(int ratingid)
+        {
+            return _database.QueryAsync<RatingModel>(
+            "select M.ID, M.Description from RatingModel M"
+            + " inner join ListRating LM"
+            + " on M.ID = LM.RatingID where LM.BookID = ?",
+            ratingid);
         }
     }
 }
