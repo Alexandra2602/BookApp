@@ -10,11 +10,12 @@ namespace BookApp.Data
     public class BooksListDatabase
     {
         readonly SQLiteAsyncConnection _database;
-
+        //static public string dbPath;
         public BooksListDatabase(string dbPath)
         {
             _database = new SQLiteAsyncConnection(dbPath);
             _database.CreateTableAsync<Book>().Wait();
+            _database.CreateTableAsync<User>().Wait();
             _database.CreateTableAsync<Review>().Wait();
             _database.CreateTableAsync<ListReview>().Wait();
             _database.CreateTableAsync<RatingModel>().Wait();
@@ -48,6 +49,37 @@ namespace BookApp.Data
         public Task<Book> SearchBookAsync(string search)
         {
             return _database.Table<Book>().Where(c => c.Title.ToLower().Contains(search) || c.Author.ToLower().Contains(search)).FirstOrDefaultAsync();
+        }
+
+
+        public Task<List<User>> GetUserListsAsync()
+        {
+            return _database.Table<User>().ToListAsync();
+        }
+        public Task<User> GetUserListAsync(int id)
+        {
+            return _database.Table<User>().Where(i => i.Id == id).FirstOrDefaultAsync();
+        }
+        public Task<User> LoginUser(string email, string pass)
+        {
+
+            return _database.Table<User>().Where(s => s.Email == email && s.Password == pass).FirstOrDefaultAsync();
+               
+        }
+        public Task<int> SaveUserListAsync(User ulist)
+        {
+            if (ulist.Id != 0)
+            {
+                return _database.UpdateAsync(ulist);
+            }
+            else
+            {
+                return _database.InsertAsync(ulist);
+            }
+        }
+        public Task<int> DeleteUserListAsync(User ulist)
+        {
+            return _database.DeleteAsync(ulist);
         }
 
 

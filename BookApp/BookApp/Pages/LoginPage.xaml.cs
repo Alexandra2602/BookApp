@@ -1,4 +1,5 @@
-﻿using BookApp.Models;
+﻿using BookApp.Data;
+using BookApp.Models;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -22,11 +23,28 @@ namespace BookApp.Pages
         }
         async void Login_Clicked(object sender, EventArgs e)
         {
-            string email = EntryUser.Text;
-            string pass = EntryPassword.Text;
-            await App.Database2.LoginUser(email, pass);
-            await Navigation.PushAsync(new BooksPage());
+                if (string.IsNullOrEmpty(EntryUser.Text) || string.IsNullOrWhiteSpace(EntryUser.Text) || string.IsNullOrEmpty(EntryPassword.Text) || string.IsNullOrWhiteSpace(EntryPassword.Text))
+                {
+                    await DisplayAlert("Error", "Email or password is empty", "ok");
+                    return;
+                }
+                else
+                {
+                    var result2 = App.Database.LoginUser(EntryUser.Text, EntryPassword.Text);
+                    if (result2 != null)
+                    {
+                        await DisplayAlert("Succes", "You are signed in", "ok");
+                        await Navigation.PushAsync(new BooksPage());
+                    }
+
+                    else
+                    {
+                        await DisplayAlert("Error", "Email or password is incorect", "Ok", "Cancel");
+                        return;
+                    }
+                }
         }
+
         async void Register_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new RegistrationPage

@@ -20,7 +20,7 @@ namespace BookApp.Pages
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            userslistview.ItemsSource = await App.Database2.GetUserListsAsync();
+            userslistview.ItemsSource = await App.Database.GetUserListsAsync();
         }
         async void AddUserClicked(object sender, EventArgs e)
         {

@@ -27,7 +27,7 @@ namespace BookApp.Pages
         {
             if (e.SelectedItem != null)
             {
-                await Navigation.PushAsync(new RatingDetailPage
+                await Navigation.PushAsync(new ReviewDetailsPage
                 {
                     BindingContext = e.SelectedItem as Book
                 });

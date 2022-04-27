@@ -1,12 +1,64 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            
              x:Class="BookApp.Pages.CalendarPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+    <StackLayout  BackgroundColor="#e0cc94">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+       
+        
+        <Label Text="Finished Books" TextColor="#855438" FontFamily="cursive" FontSize="45" Margin="0,20" HorizontalTextAlignment="Center" FontAttributes="Bold" Grid.Row="0" Grid.ColumnSpan="2" />
+            <Label Text="The day you started the book:" Margin="6,5,0,0" TextColor="Black" FontSize="15" Grid.Column="0" Grid.Row="1"/>
+            <DatePicker x:Name="startDatePicker" Format="D" Margin="5,0,0,30" FontSize="15" DateSelected="OnDateSelected" Grid.Column="1" Grid.Row="1"/>
+
+            <Label Text="The day you finished the book:" Margin="6,5,0,0" TextColor="Black" FontSize="15" Grid.Column="0" Grid.Row="2"/>
+        <DatePicker x:Name="endDatePicker" MinimumDate="{Binding Source={x:Reference startDatePicker}, Path=Date}" FontSize="15" Format="D" Margin="5,0,0,30" DateSelected="OnDateSelected" Grid.Column="1" Grid.Row="2"/>
+        <StackLayout Orientation="Horizontal" Margin="35,0,0,30" Grid.Row="3" Grid.ColumnSpan="2" >
+            <Label Text="Including the start and the end date:" TextColor="Black" FontSize="14" VerticalOptions="Center"/>
+            <Switch x:Name="includeSwitch" Toggled="includeSwitch_Toggled"/>
         </StackLayout>
-    </ContentPage.Content>
+        <Label x:Name="resultLabel" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" Grid.Row="4" Grid.ColumnSpan="2"/>
+            <Button Text="Choose the book that you finished" Clicked="Button_Clicked" CornerRadius="15" Margin="25,0,20,25" BackgroundColor="#855438" TextColor="Ivory" Grid.Row="5" Grid.ColumnSpan="2" />
+           
+        </Grid>
+        <ListView x:Name="listView" Margin="5" RowHeight="100" IsVisible="false" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell >
+                        <Frame Padding="0" Margin="5,5" HeightRequest="30" WidthRequest="30"  CornerRadius="15" HasShadow="False" BackgroundColor="#e8ddbe">
+
+                            <Grid VerticalOptions="CenterAndExpand">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="*"/>
+
+                                </Grid.ColumnDefinitions>
+                                <StackLayout Grid.Column="0">
+                                    <Image Source="{Binding ImagePath}" Margin="-12" HorizontalOptions="StartAndExpand" HeightRequest="80" WidthRequest="100" Aspect="AspectFit"  ></Image>
+                                </StackLayout>
+                                <StackLayout Grid.Column="1">
+                                    <Label Text="{Binding Title}" FontSize="18" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" TextColor="black" FontAttributes="Bold" Margin="-5,-5,0,0" />
+                                    <Label Text="{Binding Author}" FontSize="16" TextColor="black" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"  Margin="-5,-5,0,0"/>
+                                </StackLayout>
+                            </Grid>
+                        </Frame>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </StackLayout>
 </ContentPage>
+                    

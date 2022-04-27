@@ -20,13 +20,13 @@ namespace BookApp.Pages
         async void OnSaveButtonClicked(object sender, EventArgs e)
         {
             var ulist = (User)BindingContext;
-            await App.Database2.SaveUserListAsync(ulist);
+            await App.Database.SaveUserListAsync(ulist);
             await Navigation.PushAsync(new UsersPage());  
         }
         async void OnDeleteButtonClicked(object sender, EventArgs e)
         {
             var ulist = (User)BindingContext;
-            await App.Database2.DeleteUserListAsync(ulist);
+            await App.Database.DeleteUserListAsync(ulist);
             await Navigation.PushAsync(new UsersPage());
 
         }

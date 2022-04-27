@@ -21,18 +21,7 @@ namespace BookApp
                 return database;
             }
         }
-        static UsersListDatabase database2;
-        public static UsersListDatabase Database2
-        {
-            get
-            {
-                if (database2 == null)
-                {
-                    database2 = new UsersListDatabase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "BooksList.db3"));
-                }
-                return database2;
-            }
-        }
+       
         public App()
         {
             InitializeComponent();
