@@ -33,7 +33,7 @@ namespace BookApp.Pages
         {
             if(e.SelectedItem !=null)
             {
-                await Navigation.PushAsync(new RegistrationPage
+                await Navigation.PushAsync(new UsersDetailPage()
                 {
                     BindingContext = e.SelectedItem as User
                 });

@@ -4,29 +4,29 @@
              x:Class="BookApp.Pages.TopPage">
     <ContentPage.Content>
         <StackLayout BackgroundColor="#e0cc94">
-           
-            <ListView x:Name="listViewTop" Margin="10" RowHeight="150" ItemSelected="OnListViewItemSelected">
+            <ListView x:Name="listViewTop" Margin="0,0,0,0" RowHeight="160" ItemSelected="OnListViewItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell >
-                            <Frame Padding="0" Margin="5,5" HeightRequest="30" WidthRequest="30"  CornerRadius="15" HasShadow="False" BackgroundColor="#e8ddbe">
-
-                                <Grid VerticalOptions="CenterAndExpand">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="auto"/>
-                                        <ColumnDefinition Width="*"/>
-
-                                    </Grid.ColumnDefinitions>
-                                    <StackLayout Grid.Column="0">
-                                        <Image Source="{Binding ImagePath}" Margin="-12" HorizontalOptions="StartAndExpand" HeightRequest="130" WidthRequest="130" Aspect="AspectFit"  ></Image>
-                                    </StackLayout>
-                                    <StackLayout Grid.Column="1">
-                                        <Label Text="{Binding Title}" FontSize="18" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" TextColor="black" FontAttributes="Bold" Margin="-5,-5,0,0" />
-                                        <Label Text="{Binding Author}" FontSize="16" TextColor="black" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"  Margin="-5,-5,0,0"/>
-                                    </StackLayout>
-                                </Grid>
-                            </Frame>
-                        </ViewCell>
+                            <Grid VerticalOptions="CenterAndExpand">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    
+                                </Grid.RowDefinitions>
+                                <Image Source="{Binding ImagePath}" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" HorizontalOptions="StartAndExpand" HeightRequest="130" Margin="0,0,0,10" WidthRequest="120" Aspect="AspectFit"  ></Image>
+                                <Label Text="{Binding Number}" Grid.Column="1" Grid.Row="0" FontSize="18" VerticalTextAlignment="Start" HorizontalTextAlignment="Start" TextColor="black" FontAttributes="Bold" Margin="-5,-5,0,0" />
+                                <Label Text="{Binding Title}" Grid.Column="1"  Grid.Row="1"  FontSize="18" VerticalTextAlignment="Start" HorizontalTextAlignment="Start" TextColor="black" FontAttributes="Bold" Margin="-5,-5,0,0" />
+                                <Label Text="{Binding Author}" Grid.Column="1"  Grid.Row="2"  FontSize="16" TextColor="black" VerticalTextAlignment="Start" HorizontalTextAlignment="Start"  Margin="-5,-5,0,0"/>
+                                <BoxView Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" HeightRequest="1" WidthRequest="100" Color="Black" HorizontalOptions="FillAndExpand" Margin="15,90,15,0" />
+                                
+                            </Grid>
+                        </ViewCell> 
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
