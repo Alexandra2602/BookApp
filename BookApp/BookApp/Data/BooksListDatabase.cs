@@ -1,4 +1,5 @@
 ﻿using BookApp.Models;
+using BookApp.Pages;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,7 @@ namespace BookApp.Data
             _database.CreateTableAsync<ListReview>().Wait();
             _database.CreateTableAsync<RatingModel>().Wait();
             _database.CreateTableAsync<ListRating>().Wait();
+            
         }
         public Task<List<Book>> GetBookListsAsync()
         {
@@ -63,8 +65,9 @@ namespace BookApp.Data
         public Task<User> LoginUser(string email, string pass)
         {
 
-            return _database.Table<User>().Where(s => s.Email == email && s.Password == pass).FirstOrDefaultAsync();
-               
+          return _database.Table<User>().Where(s => s.Email == email && s.Password == pass).FirstOrDefaultAsync();
+            
+
         }
         public Task<int> SaveUserListAsync(User ulist)
         {

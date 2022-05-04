@@ -13,9 +13,12 @@ namespace BookApp.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class BooksPage : ContentPage
     {
-        public BooksPage()
+        User ul;
+        public BooksPage(User ulist)
         {
+
             InitializeComponent();
+            ul = ulist;
         }
         protected override async void OnAppearing()
         {
@@ -52,7 +55,7 @@ namespace BookApp.Pages
         }
         async void Home_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new BooksPage());
+            await Navigation.PushAsync(new BooksPage(ul));
         }
         async void New_Clicked(object sender, EventArgs e)
         {

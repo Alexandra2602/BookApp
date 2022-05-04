@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace BookApp.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class TopDetailsPage : ContentPage
+    public partial class AdminMainPage : ContentPage
     {
-        public TopDetailsPage()
+        public AdminMainPage()
         {
             InitializeComponent();
         }

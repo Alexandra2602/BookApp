@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,17 +14,18 @@ namespace BookApp.Pages
 
     public partial class CalendarPage : ContentPage
     {
+        User ul;
         public CalendarPage()
         {
             InitializeComponent();
-            
+
         }
         protected override async void OnAppearing()
         {
             base.OnAppearing();
             listView.ItemsSource = await App.Database.GetBookListsAsync();
         }
-        private void OnDateSelected(object sender,DateChangedEventArgs e)
+        private void OnDateSelected(object sender, DateChangedEventArgs e)
         {
             Recalculate();
         }
@@ -36,7 +38,7 @@ namespace BookApp.Pages
         {
             TimeSpan timeSpan = endDatePicker.Date - startDatePicker.Date + (includeSwitch.IsToggled ? TimeSpan.FromDays(1) : TimeSpan.Zero);
             resultLabel.Text = String.Format("You finished the book in {0} day{1}", timeSpan.Days, timeSpan.Days == 1 ? "" : "s");
-                
+
         }
 
         private void Button_Clicked(object sender, EventArgs e)
@@ -44,5 +46,31 @@ namespace BookApp.Pages
             listView.IsVisible = true;
 
         }
+
+        async void Top_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new TopPage());
+        }
+        async void Home_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new BooksPage(ul));
+        }
+        async void New_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new NewsPage());
+        }
+        async void Calendar_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new CalendarPage());
+        }
+        async void Profile_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new ProfilePage());
+        }
+        async void Members_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new UsersPage());
+        }
+
     }
 }

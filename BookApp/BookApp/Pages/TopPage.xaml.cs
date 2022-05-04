@@ -13,6 +13,7 @@ namespace BookApp.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TopPage : ContentPage
     {
+        User ul;
         Book bl;
         public TopPage()
         {
@@ -27,7 +28,7 @@ namespace BookApp.Pages
         {
             if (e.SelectedItem != null)
             {
-                await Navigation.PushAsync(new TopDetailsPage
+                await Navigation.PushAsync(new ReviewDetailsPage
                 {
                     BindingContext = e.SelectedItem as Book
                 });
@@ -39,7 +40,7 @@ namespace BookApp.Pages
         }
         async void Home_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new BooksPage());
+            await Navigation.PushAsync(new BooksPage(ul));
         }
         async void New_Clicked(object sender, EventArgs e)
         {

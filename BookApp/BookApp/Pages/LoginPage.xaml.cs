@@ -23,26 +23,33 @@ namespace BookApp.Pages
         }
         async void Login_Clicked(object sender, EventArgs e)
         {
-                if (string.IsNullOrEmpty(EntryUser.Text) || string.IsNullOrWhiteSpace(EntryUser.Text) || string.IsNullOrEmpty(EntryPassword.Text) || string.IsNullOrWhiteSpace(EntryPassword.Text))
+            if (string.IsNullOrEmpty(EntryUser.Text) || string.IsNullOrWhiteSpace(EntryUser.Text) || string.IsNullOrEmpty(EntryPassword.Text) || string.IsNullOrWhiteSpace(EntryPassword.Text))
+            {
+                await DisplayAlert("Error", "Email or password is empty", "ok");
+                return;
+            }
+            else
+            {
+                var result2 = App.Database.LoginUser(EntryUser.Text, EntryPassword.Text);
+                if (result2 != null)
                 {
-                    await DisplayAlert("Error", "Email or password is empty", "ok");
-                    return;
+                    await Navigation.PushAsync(new BooksPage((User)
+                        this.BindingContext)
+                    {
+                        BindingContext = new Book()
+                    });
+                    //await Navigation.PushAsync(new BooksPage());
                 }
+
                 else
                 {
-                    var result2 = App.Database.LoginUser(EntryUser.Text, EntryPassword.Text);
-                    if (result2 != null)
-                    {
-                        await DisplayAlert("Succes", "You are signed in", "ok");
-                        await Navigation.PushAsync(new BooksPage());
-                    }
-
-                    else
-                    {
-                        await DisplayAlert("Error", "Email or password is incorect", "Ok", "Cancel");
-                        return;
-                    }
+                    await DisplayAlert("Error", "Email or password is incorect", "Ok", "Cancel");
+                    return;
                 }
+            }
+
+
+
         }
 
         async void Register_Clicked(object sender, EventArgs e)

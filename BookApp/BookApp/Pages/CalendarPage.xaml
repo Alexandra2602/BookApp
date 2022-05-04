@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-            
              x:Class="BookApp.Pages.CalendarPage">
-    <StackLayout  BackgroundColor="#e0cc94">
+    <ContentPage.Content>
+        <StackLayout  BackgroundColor="Wheat">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="150" />
@@ -59,6 +59,44 @@
             </ListView.ItemTemplate>
         </ListView>
 
+        <Grid BackgroundColor="#e0cc94" Margin="0,-20,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+
+            <Grid ColumnSpacing="0" RowSpacing="0" Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackLayout Spacing="0" Grid.Column="0"  >
+                    <Button Image="home2.png"  HeightRequest="30" BackgroundColor="Transparent"  Clicked="Home_Clicked" />
+                    <Label Text="Home" FontSize="10" TextColor="White" HorizontalOptions="Center"/>
+                </StackLayout>
+                <StackLayout Spacing="0" Grid.Column="1" >
+                    <Button Image="top.png" BackgroundColor="Transparent"  HeightRequest="30"   Clicked="Top_Clicked" />
+                    <Label Text="Top" FontSize="10"  TextColor="White" HorizontalOptions="Center"/>
+                </StackLayout>
+
+                <StackLayout Spacing="0" Grid.Column="2" >
+                    <Button Image="calendar.png"  HeightRequest="32" BackgroundColor="Transparent" Clicked="Calendar_Clicked"/>
+                    <Label Text="Calendar" FontSize="10" TextColor="White" HorizontalOptions="Center" Margin="-1"/>
+                </StackLayout>
+                <StackLayout Spacing="0" Grid.Column="3"  >
+                    <Button Image="profile.png"  HeightRequest="30" BackgroundColor="Transparent"  Clicked="Profile_Clicked" />
+                    <Label Text="Profile" FontSize="10" TextColor="White" HorizontalOptions="Center"/>
+                </StackLayout>
+                <StackLayout Spacing="0" Grid.Column="4" >
+                    <Button Image="people2.png"  HeightRequest="30" BackgroundColor="Transparent" Clicked="Members_Clicked" />
+                    <Label Text="Comunity" FontSize="10" TextColor="White" HorizontalOptions="Center" Margin="-1"/>
+                </StackLayout>
+            </Grid>
+        </Grid>
+
     </StackLayout>
+    </ContentPage.Content>
 </ContentPage>
                     
