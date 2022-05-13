@@ -11,18 +11,18 @@ using Xamarin.Forms.Xaml;
 namespace BookApp.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class RegistrationPage : ContentPage
+    public partial class AdminReviewDetailsPage : ContentPage
     {
-        public RegistrationPage()
+        public AdminReviewDetailsPage()
         {
             InitializeComponent();
         }
-        async void RegisterButton_Clicked(object sender, EventArgs e)
+        protected override async void OnAppearing()
         {
-            var ulist = (User)BindingContext;
-            await App.Database.SaveUserListAsync(ulist);
-            await Navigation.PushAsync(new LoginPage());
+            base.OnAppearing();
+            var shopl = (Book)BindingContext;
 
+            reviewlistView.ItemsSource = await App.Database.GetListReviewsAsync(shopl.ID);
         }
     }
 }

@@ -23,7 +23,12 @@ namespace BookApp.Pages
         }
         async void Login_Clicked(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(EntryUser.Text) || string.IsNullOrWhiteSpace(EntryUser.Text) || string.IsNullOrEmpty(EntryPassword.Text) || string.IsNullOrWhiteSpace(EntryPassword.Text))
+            if(EntryUser.Text=="admin" && EntryPassword.Text=="admin")
+            {
+                await Navigation.PushAsync(new AdminMainPage());
+                   
+            }
+            else if (string.IsNullOrEmpty(EntryUser.Text) || string.IsNullOrWhiteSpace(EntryUser.Text) || string.IsNullOrEmpty(EntryPassword.Text) || string.IsNullOrWhiteSpace(EntryPassword.Text))
             {
                 await DisplayAlert("Error", "Email or password is empty", "ok");
                 return;

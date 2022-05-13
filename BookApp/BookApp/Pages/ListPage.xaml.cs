@@ -25,15 +25,7 @@ namespace BookApp
             await App.Database.DeleteBookListAsync(blist);
             await Navigation.PopAsync();
         }
-        async void OnChooseButtonClicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new ReviewPage((Book)
-           this.BindingContext)
-            {
-                BindingContext = new Review()
-            });
-
-        }
+       
         protected override async void OnAppearing()
         {
             base.OnAppearing();

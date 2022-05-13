@@ -11,40 +11,31 @@ using Xamarin.Forms.Xaml;
 namespace BookApp.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AdminMainPage : ContentPage
+    public partial class AdminReviewPage : ContentPage
     {
-        public AdminMainPage()
+        public AdminReviewPage()
         {
             InitializeComponent();
-            
         }
-        protected override async void OnAppearing()
+         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            listView.ItemsSource = await App.Database.GetBookListsAsync();
-        }
-        async void OnShopListAddedClicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new ListPage
-            {
-                BindingContext = new Book()
-            });
+            listViewTop.ItemsSource = await App.Database.GetBookListsAsync();
         }
         async void OnListViewItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             if (e.SelectedItem != null)
             {
-                await Navigation.PushAsync(new ListPage
+                await Navigation.PushAsync(new AdminReviewDetailsPage()
                 {
                     BindingContext = e.SelectedItem as Book
                 });
             }
         }
-
         async void Button_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new AdminMembersPage());
-            
+
         }
 
         async void Button_Clicked_1(object sender, EventArgs e)

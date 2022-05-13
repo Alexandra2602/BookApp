@@ -25,9 +25,8 @@
 
            
         </Grid>
-        <Button Text="Register" x:Name="RegisterButton"  TextColor="Beige" BackgroundColor="#855438" BorderRadius="25" HeightRequest="46" />
-        <Button Text="Save" Clicked="OnSaveButtonClicked"  />
-        <Button Grid.Column="1" Text="Delete" Clicked="OnDeleteButtonClicked"/>
+        <Button Text="Register" x:Name="RegisterButton"  TextColor="Beige" BackgroundColor="#855438" BorderRadius="25" HeightRequest="46" Clicked="RegisterButton_Clicked" />
+        
     </StackLayout>
     </ScrollView>
 </ContentPage>

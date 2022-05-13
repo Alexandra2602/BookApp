@@ -1,17 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BookApp.Pages.AdminMainPage">
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add Books" Clicked="OnShopListAddedClicked" />
-    </ContentPage.ToolbarItems>
-    <StackLayout BackgroundColor="Wheat">
-        <ListView x:Name="listView" Margin="10" RowHeight="150" ItemSelected="OnListViewItemSelected">
+             x:Class="BookApp.Pages.AdminMembersPage">
+    <StackLayout BackgroundColor="#e0cc94">
+        <ListView x:Name="userslistview" Margin="20" RowHeight="100" ItemSelected="OnListViewItemSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <ViewCell >
-                        <Frame Padding="0" Margin="5,5" HeightRequest="30" WidthRequest="30"  CornerRadius="15" HasShadow="False" BackgroundColor="#e0cc94">
-
+                    <ViewCell>
+                        <Frame Padding="0" Margin="5,5"  CornerRadius="15" HasShadow="False" BackgroundColor="#e8ddbe">
                             <Grid VerticalOptions="CenterAndExpand">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="auto"/>
@@ -22,8 +18,8 @@
                                     <Image Source="{Binding ImagePath}" Margin="-12" HorizontalOptions="StartAndExpand" HeightRequest="130" WidthRequest="130" Aspect="AspectFit"  ></Image>
                                 </StackLayout>
                                 <StackLayout Grid.Column="1">
-                                    <Label Text="{Binding Title}" FontSize="18" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" TextColor="black" FontAttributes="Bold" Margin="-5,-5,0,0" />
-                                    <Label Text="{Binding Author}" FontSize="16" TextColor="black" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"  Margin="-5,-5,0,0"/>
+                                    <Label Text="{Binding Name}" FontSize="18" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" TextColor="black" FontAttributes="Bold" Margin="-5,-5,0,0" />
+                                    <Label Text="{Binding LastName}" FontSize="16" TextColor="black" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"  Margin="-5,-5,0,0"/>
                                 </StackLayout>
                             </Grid>
                         </Frame>
@@ -42,7 +38,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
-                    
+
                 </Grid.ColumnDefinitions>
                 <StackLayout Spacing="0" Grid.Column="0"  >
                     <Button Image="admin_book.png"  HeightRequest="30" BackgroundColor="Transparent" Clicked="Button_Clicked_1"   />
@@ -53,14 +49,14 @@
                     <Label Text="Members" FontSize="10"  TextColor="#855438" HorizontalOptions="Center"/>
                 </StackLayout>
                 <StackLayout Spacing="0" Grid.Column="2" >
-                    <Button Image="admin_ratings.png"  HeightRequest="30" BackgroundColor="Transparent" Clicked="Button_Clicked_2"/>
+                    <Button Image="admin_ratings.png"  HeightRequest="30" BackgroundColor="Transparent" Clicked="Button_Clicked_2" />
                     <Label Text="Ratings" FontSize="10" TextColor="#855438" HorizontalOptions="Center" Margin="-1"/>
                 </StackLayout>
                 <StackLayout Spacing="0" Grid.Column="3"  >
                     <Button Image="admin_reviews.png"  HeightRequest="30" BackgroundColor="Transparent" Clicked="Button_Clicked_3"   />
                     <Label Text="Reviews" FontSize="10" TextColor="#855438" HorizontalOptions="Center"/>
                 </StackLayout>
-                
+
             </Grid>
         </Grid>
     </StackLayout>

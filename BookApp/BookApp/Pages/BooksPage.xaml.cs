@@ -25,13 +25,7 @@ namespace BookApp.Pages
             base.OnAppearing();
             listView.ItemsSource = await App.Database.GetBookListsAsync();
         }
-        async void OnShopListAddedClicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new ListPage
-            {  
-                BindingContext = new Book()
-            });
-        }
+       
         async void OnListViewItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             if (e.SelectedItem != null)

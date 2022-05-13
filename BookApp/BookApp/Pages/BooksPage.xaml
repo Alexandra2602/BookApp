@@ -2,9 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BookApp.Pages.BooksPage">
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add Shopping List" Clicked="OnShopListAddedClicked" />
-    </ContentPage.ToolbarItems>
+    
     <StackLayout BackgroundColor="Wheat">
         <SearchBar  x:Name="Search1" Placeholder="Search.." TextChanged="SearchBar_TextChanged" CancelButtonColor="LightPink" PlaceholderColor="Black"  TextColor="Black">
         </SearchBar>
