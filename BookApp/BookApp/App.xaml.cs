@@ -9,6 +9,8 @@ namespace BookApp
 {
     public partial class App : Application
     {
+        public static string FilePath = string.Empty;
+
         static BooksListDatabase database;
         public static BooksListDatabase Database
         {
@@ -27,6 +29,13 @@ namespace BookApp
             InitializeComponent();
 
             MainPage = new NavigationPage(new LoginPage());
+        }
+        public App(string filePath)
+        {
+            InitializeComponent();
+            FilePath = filePath;
+            MainPage = new NavigationPage(new LoginPage());
+
         }
 
         protected override void OnStart()

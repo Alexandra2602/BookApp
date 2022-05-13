@@ -15,18 +15,20 @@ namespace BookApp.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
+        
         public LoginPage()
         {
             InitializeComponent();
             EntryUser.Text = Preferences.Get("EntryUser", string.Empty);
             EntryPassword.Text = Preferences.Get("EntryPassword", string.Empty);
         }
+      
         async void Login_Clicked(object sender, EventArgs e)
         {
-            if(EntryUser.Text=="admin" && EntryPassword.Text=="admin")
+            if (EntryUser.Text == "admin" && EntryPassword.Text == "admin")
             {
                 await Navigation.PushAsync(new AdminMainPage());
-                   
+
             }
             else if (string.IsNullOrEmpty(EntryUser.Text) || string.IsNullOrWhiteSpace(EntryUser.Text) || string.IsNullOrEmpty(EntryPassword.Text) || string.IsNullOrWhiteSpace(EntryPassword.Text))
             {
@@ -52,10 +54,9 @@ namespace BookApp.Pages
                     return;
                 }
             }
-
-
-
         }
+
+
 
         async void Register_Clicked(object sender, EventArgs e)
         {
